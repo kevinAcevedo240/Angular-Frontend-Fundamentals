@@ -1,10 +1,74 @@
-<!--<h1>Hola Mundo</h1>
+
+<h1>*ngFor Objs</h1>
+<div>
+  <div style="border: 1px solid black" *ngFor="let product of products">
+    <img width="250" [src]="product.image" alt="image">
+    <h2>{{product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>
+<hr>
+
+<h1>*ngFor</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="newName" />
+<button (click)="addName()">Add Name</button>
+<ul>
+  <li *ngIf="names.length === 0">No hay nombres</li>
+  <li *ngFor="let name of names; index as i">
+   {{i}} {{name}}
+   <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+<hr>
+
+
+<h1>*ngIf</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
+<p *ngIf="person.name === 'kevin'">Soy Kevin Acevedo</p>
+<p *ngIf="person.name === 'julian' && person.age === 18; else myBlock">Soy Julian Acevedo</p>
+<ng-template #myBlock>
+  <p>Bloque de else</p>
+</ng-template>
+<hr>
+
+
+<h1>NgModel</h1>
+<p>Nombre: {{person.name}}</p>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
+<p>Valid: {{nameInput.valid}}</p>
+<p>Age: {{person.age}}</p>
+<input type="number" max="18" min="10" required #ageInput="ngModel" [(ngModel)]="person.age" />
+<p>Valid: {{ageInput.valid}}</p>
+<hr>
+
+<h1>Eventos</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click)="toogleButton()">Toggle Button</button>
+<p>Edad {{person.age}}</p>
+<button (click)="increaseAge()">Age ++</button>
+<hr>
+
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse minus blanditiis nemo maiores eius nulla facilis corrupti possimus est, nostrum magnam quaerat, rerum quibusdam cumque nesciunt consectetur nobis itaque. Quo. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam, vel, eos, itaque hic asperiores quidem quo perferendis magnam illum vero cupiditate nobis debitis saepe. Blanditiis rerum possimus harum ea molestias.</p>
+</div>
+<p>Nombre: {{person.name}}</p>
+<input type="text" [value]="person.name" (keyup)="changeName($event)">
+<hr>
+
+<input type="text" [value]="person.name" [disabled]="InputDisabled">
+<progress max="100" [value]="person.age"></progress>
+<img [src]="person.avatar" width="100">
+<h1>Hola Mundo</h1>
+<hr>
+
 <h2>{{'Hola Mundo'.repeat(5)}}</h2>
 <p>3+3 ={{3 +3}}</p>
 <h3>Hola, soy {{name}} y tengo {{age}} años</h3>
-<img src={{img}} alt="image">-->
+<img src={{img}} alt="image">
 
-<div class="container">
+
+
+<!--<div class="container">
   <h1>Login / Registro</h1>
   <div class="form-container">
     <form>
@@ -19,4 +83,4 @@
       <button type="submit">Iniciar sesión / Registrarse</button>
     </form>
   </div>
-</div>
+</div>-->
