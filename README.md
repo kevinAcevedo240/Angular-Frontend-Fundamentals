@@ -1,7 +1,8 @@
 # CURSO DE PLATZI 'FUNDAMENTOS DE ANGULAR'
 # FundamentalsProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4. <br>
+Si quieres ver mi proyecto de práctica básica, está subido en una instancia de Firebase aquí: [Fundamentals Angular](https://angularfundamentals-a6a8a.web.app/)
 
 ## Development server
 
