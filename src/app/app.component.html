@@ -1,145 +1,149 @@
-<h1>Formulario</h1>
-<form (ngSubmit)="onRegister()" #myForm="ngForm" class="form-style">
-  <div class="input-group">
-    <label for="name" class="label-form">Name</label>
-    <input type="text" class="input-form" name="name" required id="txtName" [(ngModel)]="register.name" />
-    <p class="message-error">Mensajes de error</p>
-  </div>
-  <div class="input-group">
-    <label for="email" class="label-form">Email address</label>
-    <input type="email" class="input-form" name="email" required id="txtEmail" [(ngModel)]="register.email" />
-    <p class="message-error">Mensajes de error</p>
-  </div>
-  <div class="input-group">
-    <label for="password" class="label-form">Password</label>
-    <input type="password" class="input-form" name="password" required id="txtPass" [(ngModel)]="register.password" />
-    <p class="message-error">Mensajes de error</p>
-  </div>
-  <button [disabled]="myForm.invalid" type="submit" class="Register-button">Registrar</button>
+<div class="container">
+  <h1>Formulario</h1>
+  <form (ngSubmit)="onRegister()" #myForm="ngForm" class="form-style">
+    <div class="input-group">
+      <label for="name" class="label-form">Name</label>
+      <input type="text" class="input-form" name="name" required id="txtName" [(ngModel)]="register.name" />
+      <p class="message-error">Mensajes de error</p>
+    </div>
+    <div class="input-group">
+      <label for="email" class="label-form">Email address</label>
+      <input type="email" class="input-form" name="email" required id="txtEmail" [(ngModel)]="register.email" />
+      <p class="message-error">Mensajes de error</p>
+    </div>
+    <div class="input-group">
+      <label for="password" class="label-form">Password</label>
+      <input type="password" class="input-form" name="password" required id="txtPass" [(ngModel)]="register.password" />
+      <p class="message-error">Mensajes de error</p>
+    </div>
+    <button [disabled]="myForm.invalid" type="submit" class="Register-button">Registrar</button>
 
-</form>
-<hr>
+  </form>
+  <hr>
 
-<h1>NgClass & Style</h1>
-<input type="text" required #nameInput5="ngModel" [(ngModel)]="person.name" />
-<hr class="line-error"
-[ngClass]="{
+  <h1>NgClass & Style</h1>
+  <input type="text" required #nameInput5="ngModel" [(ngModel)]="person.name" />
+  <hr class="line-error" [ngClass]="{
   'valid':nameInput5.valid,
   'invalid':nameInput5.invalid
 }">
-<p class="message-error" [class.invalid]="nameInput5.invalid">
-  El campo es requerido
-</p>
-<div class="test-style">
-  <div>
-    <input type="number" [(ngModel)]="box.width" />
-    <input type="number" [(ngModel)]="box.height" />
-    <input type="color" [(ngModel)]="box.background" />
-  </div>
-  <div>
-    <div [ngStyle]="{
+  <p class="message-error" [class.invalid]="nameInput5.invalid">
+    El campo es requerido
+  </p>
+  <div class="test-style">
+    <div>
+      <input class="input-picker" type="number" [(ngModel)]="box.width" />
+      <input class="input-picker" type="number" [(ngModel)]="box.height" />
+      <input class="picker-color" type="color" [(ngModel)]="box.background" />
+    </div>
+    <div>
+      <div style="border-radius: 5px;" [ngStyle]="{
       'width.px': box.width,
       'height.px': box.height,
       'background-color': box.background,
       'display': 'block'
     }"></div>
+    </div>
+
   </div>
+  <hr>
+
+
+  <h1>Class & Style</h1>
+  <input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name" />
+  <p class="message-error" [class.invalid]="nameInput3.invalid">El campo es requerido</p>
+  <label>Nombre</label>
+  <input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name" />
+  <p [style.font-style]="nameInput4.invalid ? 'italic': 'normal'">Lorem, ipsum dolor sit amet consectetur adipisicing
+    elit.</p>
+  <div class="test-style">
+    <div>
+      <input type="text" [(ngModel)]="widthImg" />
+    </div>
+    <div>
+      <img [style.width.%]="widthImg" [src]="person.avatar" width="100" alt="image" (dblclick)="handleDoubleClick()">
+    </div>
+  </div>
+  <hr>
+
+
+  <h1>*ngFor Objs</h1>
+  <div class="products--grid">
+    <div *ngFor="let product of products" (contextmenu)="onRightClick($event, product)" class="grid-product">
+      <img [src]="product.image" alt="image">
+      <h2>Precio: $ {{product.price}}</h2>
+      <p>{{product.name}}</p>
+    </div>
+  </div>
+  <hr>
+
+  <ul #menu id="context-menu" class="context-menu" style="border-radius: 8px;">
+    <li>Editar</li>
+    <li (click)="eliminarProducto()">Eliminar</li>
+    <li>Copiar</li>
+  </ul>
+
+  <h1>*ngFor</h1>
+  <input type="text" required #nameInput2="ngModel" [(ngModel)]="newName" />
+  <button class="Register-button" (click)="addName()">Add Name</button>
+  <ul>
+    <li *ngIf="names.length === 0">No hay nombres</li>
+    <li *ngFor="let name of names; index as i">
+      {{i}} {{name}}
+      <button class="Register-button" (click)="deleteName(i)">Delete</button>
+    </li>
+  </ul>
+  <hr>
+
+
+  <h1>*ngIf</h1>
+  <input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
+  <p *ngIf="person.name === 'kevin'">Soy Kevin Acevedo</p>
+  <p *ngIf="person.name === 'julian' && person.age === 18; else myBlock">Soy Julian Acevedo</p>
+  <ng-template #myBlock>
+    <p>Bloque de else</p>
+  </ng-template>
+  <hr>
+
+
+  <h1>NgModel</h1>
+  <p>Nombre: {{person.name}}</p>
+  <input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
+  <p>Valid: {{nameInput.valid}}</p>
+  <p>Age: {{person.age}}</p>
+  <input type="number" max="18" min="10" required #ageInput="ngModel" [(ngModel)]="person.age" />
+  <p>Valid: {{ageInput.valid}}</p>
+  <hr>
+
+  <h1>Eventos</h1>
+  <button class="Register-button" [disabled]="btnDisabled">Enviar</button>
+  <button class="Register-button" (click)="toogleButton()">Toggle Button</button>
+  <p>Edad {{person.age}}</p>
+  <button class="Register-button" (click)="increaseAge()">Age ++</button>
+  <hr>
+
+  <div class="box" (scroll)="onScroll($event)">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse minus blanditiis nemo maiores eius nulla facilis
+      corrupti possimus est, nostrum magnam quaerat, rerum quibusdam cumque nesciunt consectetur nobis itaque. Quo.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam, vel, eos, itaque hic asperiores quidem quo
+      perferendis magnam illum vero cupiditate nobis debitis saepe. Blanditiis rerum possimus harum ea molestias.</p>
+  </div>
+  <p>Nombre: {{person.name}}</p>
+  <input type="text" [value]="person.name" (keyup)="changeName($event)">
+  <hr>
+
+  <input type="text" [value]="person.name" [disabled]="InputDisabled">
+  <progress max="100" [value]="person.age"></progress>
+  <img [src]="person.avatar" width="100">
+  <h1>Hola Mundo</h1>
+  <hr>
+
+  <h2>{{'Hola Mundo'.repeat(5)}}</h2>
+  <p>3+3 ={{3 +3}}</p>
+  <h3>Hola, soy {{name}} y tengo {{age}} años</h3>
+  <img src={{img}} width="200" alt="image">
 
 </div>
-<hr>
-
-
-<h1>Class & Style</h1>
-<input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name" />
-<p class="message-error" [class.invalid]="nameInput3.invalid">El campo es requerido</p>
-<label>Nombre</label>
-<input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name" />
-<p [style.font-style]="nameInput4.invalid ? 'italic': 'normal'">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-<div class="test-style">
-  <div>
-    <input type="text" [(ngModel)]="widthImg" />
-  </div>
-  <div>
-    <img [style.width.%]="widthImg" [src]="person.avatar" width="100" alt="image" (dblclick)="handleDoubleClick()">
-  </div>
-</div>
-<hr>
-
-
-<h1>*ngFor Objs</h1>
-<div class="products--grid">
-  <div  *ngFor="let product of products" (contextmenu)="onRightClick($event, product)">
-    <img  [src]="product.image" alt="image">
-    <h2>{{product.price}}</h2>
-    <p>{{product.name}}</p>
-  </div>
-</div>
-<hr>
-
-<ul #menu id="context-menu" class="context-menu" style="border-radius: 8px;">
-  <li>Editar</li>
-  <li (click)="eliminarProducto()">Eliminar</li>
-  <li>Copiar</li>
-</ul>
-
-<h1>*ngFor</h1>
-<input type="text" required #nameInput2="ngModel" [(ngModel)]="newName" />
-<button (click)="addName()">Add Name</button>
-<ul>
-  <li *ngIf="names.length === 0">No hay nombres</li>
-  <li *ngFor="let name of names; index as i">
-   {{i}} {{name}}
-   <button (click)="deleteName(i)">Delete</button>
-  </li>
-</ul>
-<hr>
-
-
-<h1>*ngIf</h1>
-<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
-<p *ngIf="person.name === 'kevin'">Soy Kevin Acevedo</p>
-<p *ngIf="person.name === 'julian' && person.age === 18; else myBlock">Soy Julian Acevedo</p>
-<ng-template #myBlock>
-  <p>Bloque de else</p>
-</ng-template>
-<hr>
-
-
-<h1>NgModel</h1>
-<p>Nombre: {{person.name}}</p>
-<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name" />
-<p>Valid: {{nameInput.valid}}</p>
-<p>Age: {{person.age}}</p>
-<input type="number" max="18" min="10" required #ageInput="ngModel" [(ngModel)]="person.age" />
-<p>Valid: {{ageInput.valid}}</p>
-<hr>
-
-<h1>Eventos</h1>
-<button [disabled]="btnDisabled">Enviar</button>
-<button (click)="toogleButton()">Toggle Button</button>
-<p>Edad {{person.age}}</p>
-<button (click)="increaseAge()">Age ++</button>
-<hr>
-
-<div class="box" (scroll)="onScroll($event)">
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse minus blanditiis nemo maiores eius nulla facilis corrupti possimus est, nostrum magnam quaerat, rerum quibusdam cumque nesciunt consectetur nobis itaque. Quo. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam, vel, eos, itaque hic asperiores quidem quo perferendis magnam illum vero cupiditate nobis debitis saepe. Blanditiis rerum possimus harum ea molestias.</p>
-</div>
-<p>Nombre: {{person.name}}</p>
-<input type="text" [value]="person.name" (keyup)="changeName($event)">
-<hr>
-
-<input type="text" [value]="person.name" [disabled]="InputDisabled">
-<progress max="100" [value]="person.age"></progress>
-<img [src]="person.avatar" width="100">
-<h1>Hola Mundo</h1>
-<hr>
-
-<h2>{{'Hola Mundo'.repeat(5)}}</h2>
-<p>3+3 ={{3 +3}}</p>
-<h3>Hola, soy {{name}} y tengo {{age}} años</h3>
-<img src={{img}} width="200" alt="image">
-
-
 
 <!--<div class="container">
   <h1>Login / Registro</h1>
