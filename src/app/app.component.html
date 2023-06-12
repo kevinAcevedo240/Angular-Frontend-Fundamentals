@@ -1,8 +1,75 @@
+<h1>Formulario</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm" class="form-style">
+  <div class="input-group">
+    <label for="name" class="label-form">Name</label>
+    <input type="text" class="input-form" name="name" required id="txtName" [(ngModel)]="register.name" />
+    <p class="message-error">Mensajes de error</p>
+  </div>
+  <div class="input-group">
+    <label for="email" class="label-form">Email address</label>
+    <input type="email" class="input-form" name="email" required id="txtEmail" [(ngModel)]="register.email" />
+    <p class="message-error">Mensajes de error</p>
+  </div>
+  <div class="input-group">
+    <label for="password" class="label-form">Password</label>
+    <input type="password" class="input-form" name="password" required id="txtPass" [(ngModel)]="register.password" />
+    <p class="message-error">Mensajes de error</p>
+  </div>
+  <button [disabled]="myForm.invalid" type="submit" class="Register-button">Registrar</button>
+
+</form>
+<hr>
+
+<h1>NgClass & Style</h1>
+<input type="text" required #nameInput5="ngModel" [(ngModel)]="person.name" />
+<hr class="line-error"
+[ngClass]="{
+  'valid':nameInput5.valid,
+  'invalid':nameInput5.invalid
+}">
+<p class="message-error" [class.invalid]="nameInput5.invalid">
+  El campo es requerido
+</p>
+<div class="test-style">
+  <div>
+    <input type="number" [(ngModel)]="box.width" />
+    <input type="number" [(ngModel)]="box.height" />
+    <input type="color" [(ngModel)]="box.background" />
+  </div>
+  <div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+    }"></div>
+  </div>
+
+</div>
+<hr>
+
+
+<h1>Class & Style</h1>
+<input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name" />
+<p class="message-error" [class.invalid]="nameInput3.invalid">El campo es requerido</p>
+<label>Nombre</label>
+<input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name" />
+<p [style.font-style]="nameInput4.invalid ? 'italic': 'normal'">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+<div class="test-style">
+  <div>
+    <input type="text" [(ngModel)]="widthImg" />
+  </div>
+  <div>
+    <img [style.width.%]="widthImg" [src]="person.avatar" width="100" alt="image">
+  </div>
+</div>
+<hr>
+
 
 <h1>*ngFor Objs</h1>
-<div>
-  <div style="border: 1px solid black" *ngFor="let product of products">
-    <img width="250" [src]="product.image" alt="image">
+<div class="products--grid">
+  <div  *ngFor="let product of products">
+    <img  [src]="product.image" alt="image">
     <h2>{{product.price}}</h2>
     <p>{{product.name}}</p>
   </div>
@@ -64,7 +131,7 @@
 <h2>{{'Hola Mundo'.repeat(5)}}</h2>
 <p>3+3 ={{3 +3}}</p>
 <h3>Hola, soy {{name}} y tengo {{age}} años</h3>
-<img src={{img}} alt="image">
+<img src={{img}} width="200" alt="image">
 
 
 

@@ -4,3 +4,123 @@
   overflow: auto;
   background: red;
 }
+
+h1,h2,h3,p,label{
+  font-family: sans-serif;
+}
+
+hr{
+  border: 2px solid gray;
+}
+
+.products--grid{
+  display: flex;
+  flex-direction: column;
+  div {
+    img{
+      width: 100%;
+      border-radius: 10px;
+    }
+    h2, p{
+      margin: 0;
+    }
+  }
+}
+
+.message-error{
+  color: red;
+  opacity: 0;
+  transition: all linear .3s;
+  &.invalid{
+    opacity: 1;
+  }
+}
+
+.test-style{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.line-error{
+  height: 0;
+  border-bottom: 1px solid;
+  &.invalid {
+    border-color: red;
+  }
+  &.valid {
+    border-color: green;
+  }
+}
+
+
+.form-style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input{
+  border-radius: 5px;
+  padding-left: 0.6rem;
+  height: 2.4rem;
+  width: 18rem;
+  background: #efefef;
+  border-color: inherit;
+  border: inherit;
+}
+
+.label-form{
+  font-family: sans-serif;
+  font-weight: bolder;
+}
+
+.Register-button {
+  background-color: #62b1ff;
+  color: white;
+  border: 2px solid #62b1ff;
+  border-radius: 5px;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.Register-button[disabled] {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.Register-button:hover:not([disabled]) {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input.ng-invalid {
+  border: 2px solid red;
+  color: red;
+  box-shadow: 0 0 5px 1px rgba(255, 0, 0, 0.3);
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+@media screen and (min-width: 40em) {
+  .products--grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 15px;
+  }
+}

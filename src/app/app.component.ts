@@ -7,10 +7,16 @@ import { Product } from './product.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  widthImg = 10;
    name = 'Kevin';
   age = 21;
   img = 'https://definicion.de/wp-content/uploads/2013/03/perro-1.jpg';
   btnDisabled = true;
+  register ={
+    name: '',
+    email: '',
+    password: '',
+  }
   InputDisabled = false;
   person ={
     name: 'Kevin Acevedo',
@@ -19,6 +25,11 @@ export class AppComponent {
   }
   names: string[] = ['Kevin','Julian','Pedro','Pablo'];
   newName = '';
+  box = {
+    width: 100,
+    height: 100,
+    background: 'red'
+  };
   products: Product[] = [
     {
       name: 'EL mejor juguete',
@@ -79,6 +90,10 @@ export class AppComponent {
 
   deleteName(index: number){
     this.names.splice(index, 1);
+  }
+
+  onRegister(){
+    console.log(this.register)
   }
 
 }
