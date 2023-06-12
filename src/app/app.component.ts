@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef   } from '@angular/core';
 import { Product } from './product.model';
 
 @Component({
@@ -94,6 +94,50 @@ export class AppComponent {
 
   onRegister(){
     console.log(this.register)
+  }
+
+  handleDoubleClick() {
+    // Acciones que deseas realizar al dar doble clic
+    console.log("Doble clic ejecutado");
+    // ...
+  }
+
+  handleContextMenu(event: MouseEvent) {
+    event.preventDefault(); // Evita que se muestre el menú contextual del navegador
+
+    // Aquí puedes crear y mostrar tu propio menú contextual personalizado
+    // utilizando bibliotecas de menú o componentes personalizados
+    // o mostrando opciones en un cuadro de diálogo, etc.
+    console.log("Menú contextual personalizado mostrado");
+  }
+
+  @ViewChild('menu', { static: false }) menu!: ElementRef;
+
+  selectedProduct: Product | undefined;
+
+onRightClick(event: MouseEvent, product: Product) {
+  event.preventDefault();
+  this.menu.nativeElement.style.display = 'block';
+
+  const parentRect = this.menu.nativeElement.parentElement.getBoundingClientRect();
+  const offsetX = event.clientX - parentRect.left;
+  const offsetY = event.clientY - parentRect.top;
+
+  this.menu.nativeElement.style.left = offsetX + 'px';
+  this.menu.nativeElement.style.top = offsetY + 'px';
+
+  this.selectedProduct = product; // Almacena el producto seleccionado
+
+  console.log(this.selectedProduct);
+}
+
+  eliminarProducto() {
+    if (this.selectedProduct) {
+      const index = this.products.indexOf(this.selectedProduct);
+      if (index !== -1) {
+        this.products.splice(index, 1); // Elimina el producto del arreglo
+      }
+    }
   }
 
 }

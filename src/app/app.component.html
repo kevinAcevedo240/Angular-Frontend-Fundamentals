@@ -60,7 +60,7 @@
     <input type="text" [(ngModel)]="widthImg" />
   </div>
   <div>
-    <img [style.width.%]="widthImg" [src]="person.avatar" width="100" alt="image">
+    <img [style.width.%]="widthImg" [src]="person.avatar" width="100" alt="image" (dblclick)="handleDoubleClick()">
   </div>
 </div>
 <hr>
@@ -68,13 +68,19 @@
 
 <h1>*ngFor Objs</h1>
 <div class="products--grid">
-  <div  *ngFor="let product of products">
+  <div  *ngFor="let product of products" (contextmenu)="onRightClick($event, product)">
     <img  [src]="product.image" alt="image">
     <h2>{{product.price}}</h2>
     <p>{{product.name}}</p>
   </div>
 </div>
 <hr>
+
+<ul #menu id="context-menu" class="context-menu" style="border-radius: 8px;">
+  <li>Editar</li>
+  <li (click)="eliminarProducto()">Eliminar</li>
+  <li>Copiar</li>
+</ul>
 
 <h1>*ngFor</h1>
 <input type="text" required #nameInput2="ngModel" [(ngModel)]="newName" />
